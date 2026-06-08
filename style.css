@@ -1,0 +1,467 @@
+/* ========================================
+   职场卡牌冒险者：财富自由之路 - 样式表
+   ======================================== */
+
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* ========================================
+   顶部状态栏
+   ======================================== */
+#status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.status-label {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.status-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.bar-wrapper {
+    position: relative;
+    width: 100px;
+    height: 20px;
+    background: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.hp-bar {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+.mp-bar {
+    background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.enemy-hp-bar {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+.bar-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* ========================================
+   怪物战斗区
+   ======================================== */
+#battle-area {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#enemy-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#enemy-name {
+    font-size: 24px;
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+.enemy-status {
+    display: flex;
+    justify-content: center;
+}
+
+.enemy-intent {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+#battle-info {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#battle-log {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* ========================================
+   手牌区
+   ======================================== */
+#hand-area {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    min-height: 180px;
+}
+
+#cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* 卡牌样式 */
+.card {
+    width: 120px;
+    height: 160px;
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    border: 2px solid #465c71;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-color: #3498db;
+}
+
+.card.selected {
+    border-color: #f1c40f;
+    box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
+}
+
+.card.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.card.disabled:hover {
+    transform: none;
+}
+
+.card-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
+}
+
+.card-type {
+    font-size: 10px;
+    color: #888;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.card-description {
+    font-size: 11px;
+    color: #ccc;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.card-cost {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background: #3498db;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.card-attack {
+    background: linear-gradient(145deg, #c0392b, #e74c3c);
+}
+
+.card-defense {
+    background: linear-gradient(145deg, #2980b9, #3498db);
+}
+
+.card-function {
+    background: linear-gradient(145deg, #16a085, #1abc9c);
+}
+
+.card-work {
+    background: linear-gradient(145deg, #8e44ad, #9b59b6);
+}
+
+/* ========================================
+   功能按钮区
+   ======================================== */
+#action-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: #3498db;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   弹窗样式
+   ======================================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    border: 2px solid #465c71;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.modal-content p {
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+#event-options,
+#partner-options,
+#investment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-option,
+.partner-option,
+.investment-option {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #fff;
+}
+
+.event-option:hover,
+.partner-option:hover,
+.investment-option:hover {
+    background: rgba(52, 152, 219, 0.3);
+    border-color: #3498db;
+}
+
+/* ========================================
+   卡组弹窗
+   ======================================== */
+#deck-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.deck-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.deck-card-name {
+    font-weight: bold;
+    color: #fff;
+}
+
+.deck-card-count {
+    color: #888;
+    font-size: 14px;
+}
+
+/* ========================================
+   结局弹窗
+   ======================================== */
+#ending-modal .modal-content {
+    border-color: #f1c40f;
+}
+
+.victory {
+    color: #f1c40f !important;
+}
+
+.defeat {
+    color: #e74c3c !important;
+}
+
+/* ========================================
+   响应式设计
+   ======================================== */
+@media (max-width: 768px) {
+    #status-bar {
+        justify-content: space-around;
+    }
+
+    .status-item {
+        min-width: 60px;
+    }
+
+    .bar-wrapper {
+        width: 60px;
+    }
+
+    .card {
+        width: 100px;
+        height: 140px;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+   动画效果
+   ======================================== */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.3s ease;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.pulse {
+    animation: pulse 0.5s ease infinite;
+}
