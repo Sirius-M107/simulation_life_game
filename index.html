@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>职场卡牌冒险者：财富自由之路</title>
+    <title>骑士卡牌冒险者：财富自由之路</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -59,7 +59,7 @@
                 <div id="enemy-intent" class="enemy-intent"></div>
             </div>
             <div id="battle-info">
-                <p id="battle-log">准备好开始你的职场冒险吧！</p>
+                <p id="battle-log">准备好开始你的骑士冒险吧！</p>
             </div>
         </section>
 
@@ -81,7 +81,41 @@
             <div class="modal-content">
                 <h2 id="battle-result-title">战斗胜利</h2>
                 <div id="battle-result-content"></div>
-                <button id="btn-close-battle-result" class="btn btn-primary">确认</button>
+                <button id="btn-close-battle-result" class="btn btn-primary">继续 →</button>
+            </div>
+        </div>
+
+        <!-- 卡牌升级事件弹窗（变招/追击） -->
+        <div id="card-upgrade-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="card-upgrade-title">卡牌升级</h2>
+                <p id="card-upgrade-desc"></p>
+                <div id="card-upgrade-stage" class="upgrade-stage">
+                    <!-- stage 1: 候选升级标签 -->
+                    <!-- stage 2: 候选目标卡（手牌中的攻击/防御/功能牌） -->
+                </div>
+                <button id="btn-close-card-upgrade" class="btn btn-primary" style="margin-top:14px;">取消</button>
+            </div>
+        </div>
+
+        <!-- 启动屏（继续游戏 / 新游戏） -->
+        <div id="start-modal" class="modal">
+            <div class="modal-content start-modal-content">
+                <h1>🛡️ 骑士卡牌冒险者</h1>
+                <h2 style="font-size:16px; color:#d4a574; margin-top:0;">财富自由之路</h2>
+                <p style="color:#aaa; font-size:13px; line-height:1.7; text-align:left;">
+                    你将扮演一位追求荣耀的骑士，在奇幻世界中冒险。<br>
+                    击败妖怪、击败 BOSS、积累金币与影响力，最终通往财富自由。<br>
+                    <span style="color:#d4a574">每层 15 节点（共 3 层），击败 9 位 BOSS 方可通关。</span>
+                </p>
+                <div id="save-summary" class="save-summary">尚无存档</div>
+                <div class="start-actions">
+                    <button id="btn-continue" class="btn btn-primary">📂 继续游戏</button>
+                    <button id="btn-new-game" class="btn btn-danger">⚔️ 开始冒险（覆盖存档）</button>
+                </div>
+                <p style="color:#666; font-size:11px; margin-top:14px;">
+                    06 §4.3 油画配色 · 07 JKQ 同伴体系已规划待实现
+                </p>
             </div>
         </div>
 
