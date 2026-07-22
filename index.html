@@ -44,6 +44,7 @@
                 <span class="status-label">权威</span>
                 <span id="authority" class="status-value">0</span>
             </div>
+            <span id="speed-indicator" class="speed-indicator">▶️ 1x</span>
         </header>
 
         <!-- 怪物战斗区 -->
@@ -57,11 +58,35 @@
                     </div>
                 </div>
                 <div id="enemy-intent" class="enemy-intent"></div>
+                <!-- 敌人施法进度条 -->
+                <div id="enemy-cast-bar" class="cast-bar hidden">
+                    <span id="enemy-cast-label">施放中...</span>
+                    <div class="cast-bar-track">
+                        <div id="enemy-cast-fill" class="cast-bar-fill enemy-cast"></div>
+                    </div>
+                </div>
             </div>
             <div id="battle-info">
                 <p id="battle-log">准备好开始你的骑士冒险吧！</p>
             </div>
         </section>
+
+        <!-- 行动槽 -->
+        <div id="gauge-container" class="gauge-container">
+            <span class="gauge-label">⚡ 行动槽</span>
+            <div class="bar-wrapper gauge-bar-wrapper">
+                <div id="gauge-bar" class="bar gauge-bar"></div>
+                <span id="gauge-text" class="bar-text">100/100</span>
+            </div>
+        </div>
+
+        <!-- 玩家施法进度条 -->
+        <div id="player-cast-bar" class="cast-bar hidden">
+            <span id="player-cast-label">施放中...</span>
+            <div class="cast-bar-track">
+                <div id="player-cast-fill" class="cast-bar-fill player-cast"></div>
+            </div>
+        </div>
 
         <!-- 手牌区 -->
         <section id="hand-area">
@@ -70,11 +95,16 @@
 
         <!-- 功能按钮区 -->
         <footer id="action-bar">
-            <button id="btn-end-turn" class="btn btn-primary">结束回合</button>
+            <button id="btn-pause" class="btn btn-primary">⏸️ 暂停 (空格)</button>
             <button id="btn-view-deck" class="btn">查看卡组</button>
             <button id="btn-save" class="btn">保存进度</button>
             <button id="btn-restart" class="btn btn-danger">重新开始</button>
         </footer>
+
+        <!-- 暂停覆盖层 -->
+        <div id="pause-overlay" class="pause-overlay hidden">
+            <div class="pause-text">⏸️ 已暂停<br><span class="pause-hint">按空格键继续 · 可查看手牌并排队出牌</span></div>
+        </div>
 
         <!-- 战斗结算弹窗 -->
         <div id="battle-result-modal" class="modal hidden">
@@ -91,8 +121,6 @@
                 <h2 id="card-upgrade-title">卡牌升级</h2>
                 <p id="card-upgrade-desc"></p>
                 <div id="card-upgrade-stage" class="upgrade-stage">
-                    <!-- stage 1: 候选升级标签 -->
-                    <!-- stage 2: 候选目标卡（手牌中的攻击/防御/功能牌） -->
                 </div>
                 <button id="btn-close-card-upgrade" class="btn btn-primary" style="margin-top:14px;">取消</button>
             </div>
@@ -102,11 +130,11 @@
         <div id="start-modal" class="modal">
             <div class="modal-content start-modal-content">
                 <h1>🛡️ 骑士卡牌冒险者</h1>
-                <h2 style="font-size:16px; color:#d4a574; margin-top:0;">财富自由之路</h2>
+                <h2 style="font-size:16px; color:#d4a574; margin-top:0;">财富自由之路 · 半实时对战 Demo</h2>
                 <p style="color:#aaa; font-size:13px; line-height:1.7; text-align:left;">
                     你将扮演一位追求荣耀的骑士，在奇幻世界中冒险。<br>
                     击败妖怪、击败 BOSS、积累金币与影响力，最终通往财富自由。<br>
-                    <span style="color:#d4a574">每层 15 节点（共 3 层），击败 9 位 BOSS 方可通关。</span>
+                    <span style="color:#d4a574">太吾绘卷风格实时+暂停战斗 · 空格暂停 · F加速</span>
                 </p>
                 <div id="save-summary" class="save-summary">尚无存档</div>
                 <div class="start-actions">
@@ -174,6 +202,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
